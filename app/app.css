@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.btn {
+  @apply font-medium py-3 px-6 rounded-lg text-center min-w-[200];
+  /* Force button visibility */
+  opacity: 1;
+  visibility: visible !important;
+}
+
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-primary:active {
+  background-color: #2563eb;
+}
+
+.btn-success {
+  background-color: #22c55e;
+  color: white;
+}
+
+.btn-success:active {
+  background-color: #16a34a;
+}
+
+.btn-info {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+.btn-info:active {
+  background-color: #7c3aed;
+}
+
+.input-field {
+  @apply border border-gray-300 rounded-lg py-2 px-4 w-full text-lg;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.loading {
+  @apply animate-pulse bg-gray-200;
+}
+
+.question-item {
+  @apply border-b border-gray-200 py-4;
+}
+
+.question-item:active {
+  background-color: #f3f4f6;
+}
+
+ActionBar {
+  background-color: #4a5568;
+  color: white;
+}

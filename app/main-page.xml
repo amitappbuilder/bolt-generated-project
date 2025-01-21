@@ -1,0 +1,68 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="PDF Quiz Generator" class="bg-gray-800 text-white" flat="true">
+        <NavigationButton visibility="collapsed" />
+        <ActionItem ios.position="right" android.position="actionBar" 
+                   text="{{ isLoading ? 'Processing...' : '' }}" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-6 space-y-6">
+            <!-- PDF Upload Section -->
+            <StackLayout class="card">
+                <Label text="Upload PDF Document" class="text-xl font-bold mb-4" />
+                <!-- Fixed PDF Upload Button -->
+                <Button text="Choose PDF" 
+                        tap="{{ onUploadPDF }}" 
+                        class="btn btn-primary"
+                        isEnabled="{{ !isLoading }}"
+                        ios:visibility="visible"
+                        android:visibility="visible" />
+                <Label text="{{ pdfFileName }}" 
+                       class="text-sm text-gray-600 mt-2"
+                       visibility="{{ pdfFileName ? 'visible' : 'collapsed' }}" />
+            </StackLayout>
+
+            <!-- Question Configuration -->
+            <StackLayout class="card">
+                <Label text="Configure Questions" class="text-xl font-bold mb-4" />
+                <GridLayout rows="auto" columns="*, auto" class="mb-4">
+                    <Label text="Number of Questions:" class="text-lg" col="0" />
+                    <TextField text="{{ questionCount }}" 
+                              keyboardType="number" 
+                              class="input-field text-right w-24"
+                              hint="1-50"
+                              maxLength="2"
+                              col="1" />
+                </GridLayout>
+                <Button text="Generate Questions" 
+                        tap="{{ onGenerateQuestions }}" 
+                        class="btn btn-success"
+                        isEnabled="{{ !isLoading }}" />
+            </StackLayout>
+
+            <!-- Generated Questions List -->
+            <StackLayout class="card">
+                <Label text="Generated Questions" class="text-xl font-bold mb-4" />
+                <ListView items="{{ questions }}" itemTap="{{ onQuestionTap }}" height="300">
+                    <ListView.itemTemplate>
+                        <StackLayout class="question-item">
+                            <Label text="{{ text }}" textWrap="true" class="font-medium" />
+                            <Label text="{{ 'Difficulty: ' + difficulty }}" 
+                                   class="text-sm text-gray-500 mt-1" />
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+                
+                <Button text="Export Quiz" 
+                        tap="{{ onExportQuiz }}" 
+                        class="btn btn-info mt-4"
+                        isEnabled="{{ !isLoading }}" />
+            </StackLayout>
+
+            <!-- Loading Indicator -->
+            <ActivityIndicator busy="{{ isLoading }}" 
+                             visibility="{{ isLoading ? 'visible' : 'collapsed' }}"
+                             class="mt-4" />
+        </StackLayout>
+    </ScrollView>
+</Page>
